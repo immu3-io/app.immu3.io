@@ -1,0 +1,49 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint --ext .ts,.js,.vue . --fix"
+  },
+  "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@nuxtjs/color-mode": "^3.2.0",
+    "@nuxtjs/eslint-module": "^3.1.0",
+    "@nuxtjs/tailwindcss": "^6.2.0",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@tailwindcss/forms": "^0.5.3",
+    "@types/file-saver": "^2.0.5",
+    "@types/node": "^18.11.19",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "autoprefixer": "^10.4.13",
+    "crypto-browserify": "^3.12.0",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "^26.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.8.0",
+    "nuxt": "^3.1.2",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@4thtech-sdk/ethereum": "^0.0.7",
+    "@4thtech-sdk/types": "^0.0.6",
+    "@headlessui/vue": "^1.7.7",
+    "@heroicons/vue": "^2.0.13",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "@vueuse/components": "^9.12.0",
+    "@vueuse/core": "^9.12.0",
+    "@wagmi/core": "^0.8.15",
+    "file-saver": "^2.0.5",
+    "vue-toastification": "^2.0.0-rc.5"
+  }
+}

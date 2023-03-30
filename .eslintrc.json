@@ -1,0 +1,48 @@
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+    },
+    "extends": [
+        "plugin:nuxt/recommended",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:vue/vue3-essential",
+        "plugin:vue/vue3-strongly-recommended"
+    ],
+    "ignorePatterns": ["scripts/**/*.js", "data/**/*.js"],
+    "rules": {
+        // Typescript
+        "indent": ["error", 2],
+        "quotes": ["error", "single"],
+        "comma-dangle": ["error", "never"],
+        "object-curly-spacing": ["error", "always"],
+        "arrow-parens": ["error", "as-needed"],
+        "semi": ["error", "always"],
+        // Vue
+        "vue/multi-word-component-names": "off",
+        "vue/max-attributes-per-line": [
+            "error",
+            {
+                "singleline": {
+                    "max": 1
+                },
+                "multiline": {
+                    "max": 1
+                }
+            }
+        ],
+        "vue/first-attribute-linebreak": [
+            "error",
+            {
+                "singleline": "beside",
+                "multiline": "beside"
+            }
+        ],
+        "vue/html-indent": ["error", 2],
+        "vue/html-comment-indent": ["error", 1]
+    }
+}
