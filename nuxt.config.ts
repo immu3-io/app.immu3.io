@@ -28,7 +28,6 @@ export default defineNuxtConfig({
         url: process.env.POLLINATIONX_URL ?? '',
         token: process.env.POLLINATIONX_TOKEN ?? ''
       },
-      goerliNetworkEndpoint: process.env.GOERLI_NETWORK_ENDPOINT ?? ''
     }
   },
   ssr: false

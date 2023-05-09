@@ -9,7 +9,7 @@ import {
   getNetwork
 } from '@wagmi/core';
 import { publicProvider } from '@wagmi/core/providers/public';
-import { goerli } from '@wagmi/core/chains';
+import { sepolia } from '@wagmi/core/chains';
 import { useAccount, useNetwork, useRoute } from '#imports';
 import useMail from '~/composables/mail';
 import { useDebounceFn } from '@vueuse/core';
@@ -20,7 +20,7 @@ import { MetaMaskConnector } from '@wagmi/core/connectors/metaMask';
 export default defineNuxtPlugin(async () => {
   const runtimeConfig = useRuntimeConfig();
   const { chains, provider, webSocketProvider } = configureChains(
-    [goerli],
+    [sepolia],
     [publicProvider()]
   );
 

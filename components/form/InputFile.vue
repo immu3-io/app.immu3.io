@@ -65,7 +65,7 @@ const processFile = (file: File)  => {
     const fileData = new Blob([reader.result]);
     modelFiles.push({
       name: file.name,
-      path: fileData
+      content: fileData
     });
   };
 

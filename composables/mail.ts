@@ -1,9 +1,8 @@
 import {
-  NetworkType,
-  ReceivedEnvelope, RemoteStorageOptions, Signer
-} from '@4thtech-sdk/types';
-import {
-  EthereumTransactionRequest
+  EthereumTransactionRequest,
+  MailReadyChain,
+  ReceivedEnvelope,
+  Signer
 } from '@4thtech-sdk/types';
 import {
   fetchSigner,
@@ -11,7 +10,8 @@ import {
   prepareSendTransaction,
   sendTransaction
 } from '@wagmi/core';
-import { Mail } from '@4thtech-sdk/ethereum';
+import { Mail, sepolia } from '@4thtech-sdk/ethereum';
+import { PollinationX } from '@4thtech-sdk/storage';
 import { useToast } from 'vue-toastification';
 const useMail = () => {
   const mailData = useState<ReceivedEnvelope[]>('envelopes', () => []);
@@ -19,16 +19,10 @@ const useMail = () => {
   const runtimeConfig = useRuntimeConfig();
 
   const initMailClient = async () => {
-    const ethereumOptions = {
-      network: {
-        type: NetworkType.TEST_NET,
-        endpoint: runtimeConfig.public.goerliNetworkEndpoint
-      }
-    };
-
-    const remoteStorageOptions: RemoteStorageOptions = {
-      pollinationX: runtimeConfig.public.pollinationX
-    };
+    const remoteStorageProvider = new PollinationX(
+      runtimeConfig.public.pollinationX.url,
+      runtimeConfig.public.pollinationX.token
+    );
 
     const wagmiSigner = await fetchSigner();
 
@@ -51,7 +45,12 @@ const useMail = () => {
       });
     };
 
-    const mail = await new Mail(signer, remoteStorageOptions, ethereumOptions);
+    const mail = await new Mail({
+      signer,
+      chain: sepolia as MailReadyChain,
+      remoteStorageProvider
+    });
+
     mailData.value = (await mail.fetchAll(getAccount().address ?? '')).reverse();
     mail.onNew(null, getAccount().address ?? '', (envelope:ReceivedEnvelope) => {
       mailData.value.unshift(envelope);
