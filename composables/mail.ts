@@ -1,8 +1,9 @@
 import {
+  EncryptionType,
   EthereumTransactionRequest,
   MailReadyChain,
   ReceivedEnvelope,
-  Signer
+  Signer, UserReadyChain
 } from '@4thtech-sdk/types';
 import {
   fetchSigner,
@@ -13,6 +14,9 @@ import {
 import { Mail, sepolia } from '@4thtech-sdk/ethereum';
 import { PollinationX } from '@4thtech-sdk/storage';
 import { useToast } from 'vue-toastification';
+import useEncryptor from '~/composables/encryptor';
+import { toRaw } from '#build/imports';
+import { EncryptionHandler, EncryptorAesEncryption } from '@4thtech-sdk/encryption';
 const useMail = () => {
   const mailData = useState<ReceivedEnvelope[]>('envelopes', () => []);
   const mailClient = useState<Mail>('mailClient');
@@ -45,10 +49,30 @@ const useMail = () => {
       });
     };
 
-    const mail = await new Mail({
+    const chain = sepolia as MailReadyChain;  // TODO: change back to sepolia
+
+    // TODO: On complete code refactor: move initialization outside of mail composable; also signer and chain should be defined somewhere globally
+    const { encryptor, encryptorInfo } = useEncryptor(signer, chain as UserReadyChain);
+    const encryptorRaw = toRaw(encryptor.value);
+
+    if (!encryptorRaw) {
+      return;
+    }
+
+    const encryptorEncryption = new EncryptorAesEncryption(encryptorRaw);
+    const encryptionHandler = new EncryptionHandler({
+      customEncryptionImplementations: new Map([
+        [EncryptionType.ENCRYPTOR_AES, encryptorEncryption],
+      ]),
+    });
+
+    console.log(encryptorInfo.value.isInstalled);
+
+    const mail = new Mail({
       signer,
-      chain: sepolia as MailReadyChain,
-      remoteStorageProvider
+      chain,
+      remoteStorageProvider,
+      encryptionHandler,
     });
 
     mailData.value = (await mail.fetchAll(getAccount().address ?? '')).reverse();

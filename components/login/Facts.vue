@@ -20,7 +20,7 @@ import { WalletIcon, ArrowsRightLeftIcon, CircleStackIcon, PencilSquareIcon } fr
 import { FunctionalComponent } from 'vue';
 
 const facts: {text: string, icon?: FunctionalComponent}[] = [
-  { text: 'Immutable on-chain communication <br> 1 email/message = 1 L1 or L2 TX', icon: ArrowsRightLeftIcon },
+  { text: 'Self-custodial on-chain communication <br> 1 email/message = 1 L1 or L2 TX', icon: ArrowsRightLeftIcon },
   { text: 'Wallet-to-wallet end-to-end encryption', icon: WalletIcon },
   { text: 'PollinationX decentralized storage', icon: CircleStackIcon },
   { text: 'Audited smart contracts (coming)', icon: PencilSquareIcon  }
