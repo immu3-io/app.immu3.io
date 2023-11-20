@@ -1,11 +1,15 @@
 <template>
-  <NuxtLayout>
-    <NuxtLoadingIndicator color="#6366f1" />
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <NetworkSwitcher />
+
+    <NuxtLayout>
+      <NuxtLoadingIndicator color="rgb(var(--color-primary-500))" />
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
 
 <script setup lang="ts">
-import '~/assets/styles/main.css';
-import 'vue-toastification/dist/index.css';
+import { Buffer } from 'buffer/';
+window.Buffer = Buffer;
 </script>

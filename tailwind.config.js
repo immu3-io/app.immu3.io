@@ -1,28 +1,30 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const colors = require('tailwindcss/colors');
+import { withShurikenUI } from '@shuriken-ui/tailwind';
+import colors from 'tailwindcss/colors';
 
-module.exports = {
+export default withShurikenUI({
   darkMode: 'class',
-  content: [
-    './components/**/*.{js,vue,ts}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './plugins/**/*.{js,ts}',
-    './preview/**/*.{vue,js,ts,jsx,tsx}',
-    './app.vue'
-  ],
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp')
-  ],
+  content: [],
   theme: {
+    fontFamily: {
+      sans: ['Inter  Variable', 'sans-serif'],
+      heading: ['Inter  Variable', 'sans-serif'],
+      alt: ['Karla  Variable', 'sans-serif'],
+      mono: [
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        '"Liberation Mono"',
+        '"Courier New"',
+        'monospace',
+      ],
+    },
     extend: {
       colors: {
         primary: colors.blue,
-        neutral: colors.gray,
-        'menu-background': colors.gray,
-        'menu-text': colors.gray
-      }
-    }
-  }
-};
+        muted: colors.slate,
+      },
+    },
+  },
+});
