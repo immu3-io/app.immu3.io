@@ -22,7 +22,7 @@ export default withShurikenUI({
     },
     extend: {
       colors: {
-        primary: colors.blue,
+        primary: colors.emerald,
         muted: colors.slate,
       },
     },
