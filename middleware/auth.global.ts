@@ -1,13 +1,13 @@
-import { getAccount, GetAccountResult } from '@wagmi/core';
+export default defineNuxtRouteMiddleware((to) => {
+  const { isConnected } = useAccount();
 
-export default defineNuxtRouteMiddleware(to => {
-  if(process.client) {
-    const account: GetAccountResult = getAccount();
+  // If the user is connected and trying to access the index page, redirect to dashboard
+  if (isConnected.value && to.name === 'index') {
+    return navigateTo('/dashboard');
+  }
 
-    if (account.isConnected && to.name === 'login') {
-      return navigateTo('/');
-    } else if (!account.isConnected && to.name !== 'login') {
-      return navigateTo('/login');
-    }
+  // If the user is not connected and trying to access any page other than index, redirect to index
+  if (!isConnected.value && to.name !== 'index') {
+    return navigateTo('/');
   }
 });

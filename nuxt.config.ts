@@ -1,34 +1,48 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
+
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode'],
-  css: ['~/assets/styles/main.css'],
-  tailwindcss: {
-    cssPath: '~/assets/styles/tailwind.css'
-  },
-  colorMode: {
-    classSuffix: ''
-  },
-  app: {
-    head: {
-      title: ''
-    },
-    pageTransition: { name: 'page', mode: 'out-in' }
-  },
-  build: {
-    transpile: ['@heroicons/vue']
-  },
-  plugins: [
-    { src:'~/plugins/wagmi.ts', mode: 'client' },
-    { src:'~/plugins/notifications.ts', mode: 'client' }
+  devtools: { enabled: true },
+  ssr: false,
+  extends: ['@shuriken-ui/nuxt'],
+  modules: ['@use-wagmi/nuxt', '@nuxt/image'],
+  css: [
+    '@fontsource-variable/inter/index.css',
+    '@fontsource-variable/karla/index.css',
+    'vue-toastification/dist/index.css',
   ],
   runtimeConfig: {
     public: {
-      walletConnectId: process.env.WALLET_CONNECT_ID ?? '',
+      walletConnectId: process.env.WALLET_CONNECT_ID,
       pollinationX: {
-        url: process.env.POLLINATIONX_URL ?? '',
-        token: process.env.POLLINATIONX_TOKEN ?? ''
+        url: process.env.POLLINATIONX_URL,
+        token: process.env.POLLINATIONX_TOKEN,
       },
-    }
+    },
   },
-  ssr: false
+  vite: {
+    resolve: {
+      alias: {
+        process: 'process/browser',
+        util: 'util',
+        stream: 'stream-browserify',
+      },
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'esnext',
+        define: {
+          global: 'globalThis',
+        },
+        plugins: [
+          NodeGlobalsPolyfillPlugin({
+            process: true,
+            buffer: true,
+          }),
+          NodeModulesPolyfillPlugin(),
+        ],
+      },
+    },
+  },
 });
