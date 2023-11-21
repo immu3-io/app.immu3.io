@@ -84,7 +84,7 @@ const dialogClasses = computed(() => {
 <template>
   <TransitionRoot appear :show="props.open" as="template">
     <div class="fixed inset-0 z-[9999] flex items-center justify-center">
-      <Dialog class="relative z-[9999]" as="div" @close="emit('close')">
+      <Dialog class="relative z-[60]" as="div" @close="emit('close')">
         <TransitionChild
           as="template"
           enter="duration-300 ease-out"
