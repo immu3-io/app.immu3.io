@@ -1,7 +1,8 @@
 export default defineAppConfig({
   links: {
-    privacyPolicy: 'https://github.com/4thtech/static-assets/raw/main/pdf/privacy-policy.pdf',
-    termsOfUse: 'https://github.com/4thtech/static-assets/raw/main/pdf/2023-02-20-Block_Labs_Software_Terms.pdf',
+    privacyPolicy: 'https://github.com/immu3-io/static-assets/raw/main/pdf/2023-02-20_CR_Systems_Privacy_Policy.pdf',
+    termsOfUse:
+      'https://github.com/immu3-io/static-assets/raw/main/pdf/2023-03-13_CR_Systems_dMail_dChat_w3xshare_Software_Terms.pdf',
   },
   layout: {
     title: '4thTech',
