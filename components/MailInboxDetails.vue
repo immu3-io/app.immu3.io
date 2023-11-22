@@ -74,6 +74,7 @@ const mailActionIcons = [
             <span>Inbox</span>
           </BaseHeading>
         </div>
+        <CollapseTools />
       </div>
 
       <!-- Mail header -->

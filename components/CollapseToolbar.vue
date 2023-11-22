@@ -33,13 +33,6 @@ const showNavBurger = computed(() => {
     </BaseHeading>
 
     <div class="ms-auto"></div>
-    <template v-for="tool of app.layout.collapse?.toolbar?.tools">
-      <component
-        :is="resolveComponentOrNative(tool.component)"
-        v-if="tool.component"
-        :key="tool.component"
-        v-bind="tool.props"
-      />
-    </template>
+    <CollapseTools />
   </div>
 </template>
