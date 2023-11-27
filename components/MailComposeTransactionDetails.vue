@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const { chain } = useWagmiNetwork();
 
-const blockExplorer = chain?.blockExplorers?.default;
+const blockExplorer = computed(() => chain?.value?.blockExplorers?.default);
 
 const { data: transactionReceipt, isSuccess } = useWaitForTransaction({
   hash: props.transactionHash,
