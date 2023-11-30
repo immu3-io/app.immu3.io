@@ -155,7 +155,7 @@ onBeforeRouteLeave(() => {
               :disabled="isSubmitting"
               label="Use Encryption"
               sublabel="For encrypted communication"
-              color="success"
+              color="primary"
               @update:model-value="handleChange"
               @blur="handleBlur"
             />
