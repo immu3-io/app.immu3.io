@@ -115,6 +115,8 @@ const prepareContent = (action: 'reply' | 'forward', envelope: ReceivedEnvelope)
   };
 };
 
+const isEncryptorWidgetVisible = computed(() => canUseEncryption.value && !isEncryptorReadyToUse.value);
+
 onMounted(() => {
   const queryType = route.query.reply ? 'reply' : route.query.forward ? 'forward' : undefined;
 
@@ -153,7 +155,7 @@ onBeforeRouteLeave(() => {
               :disabled="isSubmitting"
               label="Use Encryption"
               sublabel="For encrypted communication"
-              color="success"
+              color="primary"
               @update:model-value="handleChange"
               @blur="handleBlur"
             />
@@ -161,9 +163,9 @@ onBeforeRouteLeave(() => {
         </div>
       </div>
       <!-- Encryptor widget -->
-      <EncryptorWidget v-if="!isEncryptorReadyToUse && canUseEncryption" color="none" />
+      <EncryptorWidget v-if="isEncryptorWidgetVisible" color="none" />
       <!-- Form -->
-      <div v-else>
+      <div v-show="!isEncryptorWidgetVisible">
         <div class="px-10 py-5">
           <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12">

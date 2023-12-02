@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.2.2
     version: 0.2.2
   '@4thtech-sdk/ethereum':
-    specifier: ^0.3.2
-    version: 0.3.2(typescript@5.2.2)(zod@3.22.4)
+    specifier: ^0.3.4
+    version: 0.3.4(typescript@5.2.2)(zod@3.22.4)
   '@4thtech-sdk/storage':
     specifier: ^0.3.2
     version: 0.3.2
@@ -129,8 +129,8 @@ packages:
     resolution: {integrity: sha512-r8NExWMRlp3AqwHXfWwhDwegKPBw+D7rnUwT4cusEcut9KmNlOB1lmTglCJ8JNEwNppffK63Bet9dQNnPHnQSQ==}
     dev: false
 
-  /@4thtech-sdk/ethereum@0.3.2(typescript@5.2.2)(zod@3.22.4):
-    resolution: {integrity: sha512-lWwbCWZpEh1RavInsk1qCKaEy+vr2zllWwQnBLNbEJuYAI9uAbfhj+MpvoxzbCGyU+BHZN+7VlvBcexLeNXPWw==}
+  /@4thtech-sdk/ethereum@0.3.4(typescript@5.2.2)(zod@3.22.4):
+    resolution: {integrity: sha512-edQ2nxhdNc4bv6dXKz+YYrp0Us3RhhmSMhzuoOOiyCm4XiInN76p2XALsEY/c/DUcS272/LesgRmh4qPcjvIyw==}
     dependencies:
       ethers: 6.8.1
       viem: 1.19.4(typescript@5.2.2)(zod@3.22.4)

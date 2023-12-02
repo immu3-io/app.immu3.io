@@ -4,7 +4,7 @@ import 'splitpanes/dist/splitpanes.css';
 
 definePageMeta({
   title: 'Inbox',
-  layout: false,
+  layout: 'empty',
 });
 
 const { isLoading, receivedEnvelopes } = useMail();
