@@ -1,10 +1,10 @@
 export default defineAppConfig({
   meta: {
-    title: '4thTech',
-    titleSuffix: 'On-Chain communication infrastructure',
-    description: 'Self-custodial, permissionless and decentralized email and messaging.',
+    title: 'Immu3',
+    titleSuffix: 'On-Chain communication stack',
+    description: 'Self-custodial, permissionless and decentralized communication.',
     twitter: {
-      site: '@4thtechProject',
+      site: '@immu3_io',
     },
   },
   links: {
