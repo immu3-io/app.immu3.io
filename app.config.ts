@@ -1,11 +1,18 @@
 export default defineAppConfig({
+  meta: {
+    title: '4thTech',
+    titleSuffix: 'On-Chain communication infrastructure',
+    description: 'Self-custodial, permissionless and decentralized email and messaging.',
+    twitter: {
+      site: '@4thtechProject',
+    },
+  },
   links: {
     privacyPolicy: 'https://github.com/immu3-io/static-assets/raw/main/pdf/2023-02-20_CR_Systems_Privacy_Policy.pdf',
     termsOfUse:
       'https://github.com/immu3-io/static-assets/raw/main/pdf/2023-03-13_CR_Systems_dMail_dChat_w3xshare_Software_Terms.pdf',
   },
   layout: {
-    title: '4thTech',
     collapse: {
       toolbar: {
         enabled: true,
