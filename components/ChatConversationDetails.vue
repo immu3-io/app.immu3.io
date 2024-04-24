@@ -115,14 +115,6 @@ const canRemoveMember = (member: string) => {
               }}</span>
             </div>
           </div>
-          <!--          <div class="mt-6">-->
-          <!--                                            <BaseButton shape="curved" class="w-full">-->
-          <!--                                              <span> View {{ conversation.name }}'s profile </span>-->
-          <!--                                            </BaseButton>-->
-          <!--                                            <button class="mt-3 font-sans text-sm text-primary-500 underline-offset-4 hover:underline">-->
-          <!--                                              Send a friend request-->
-          <!--                                            </button>-->
-          <!--          </div>-->
           <div class="mt-6">
             <div class="mb-3 flex items-center justify-center gap-2 px-4">
               <span class="font-sans text-sm text-muted-400">Members</span>
