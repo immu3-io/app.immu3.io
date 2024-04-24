@@ -49,7 +49,7 @@ const canRemoveMember = (member: string) => {
 
 <template>
   <div
-    class="fixed end-0 top-0 z-20 h-full w-[390px] bg-white transition-transform duration-300 dark:bg-muted-800 ltablet:w-[310px]"
+    class="fixed end-0 top-0 z-20 h-full w-[390px] overflow-y-auto bg-white transition-transform duration-300 dark:bg-muted-800 ltablet:w-[310px]"
     :class="open ? 'translate-x-0' : 'translate-x-full'"
   >
     <div class="flex h-16 w-full items-center justify-between px-8">
