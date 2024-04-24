@@ -49,7 +49,7 @@ const canRemoveMember = (member: string) => {
 
 <template>
   <div
-    class="fixed end-0 top-0 z-20 h-full w-[390px] bg-white transition-transform duration-300 dark:bg-muted-800 ltablet:w-[310px]"
+    class="fixed end-0 top-0 z-20 h-full w-[390px] overflow-y-auto bg-white transition-transform duration-300 dark:bg-muted-800 ltablet:w-[310px]"
     :class="open ? 'translate-x-0' : 'translate-x-full'"
   >
     <div class="flex h-16 w-full items-center justify-between px-8">
@@ -87,7 +87,7 @@ const canRemoveMember = (member: string) => {
           </div>
         </div>
       </div>
-      <!-- User details -->
+      <!-- Conversation details -->
       <div v-else-if="conversation" class="mt-8">
         <div class="flex items-center justify-center">
           <ConversationAvatar :hash="conversation.hash" size="2xl" />
@@ -115,14 +115,6 @@ const canRemoveMember = (member: string) => {
               }}</span>
             </div>
           </div>
-          <!--          <div class="mt-6">-->
-          <!--                                            <BaseButton shape="curved" class="w-full">-->
-          <!--                                              <span> View {{ conversation.name }}'s profile </span>-->
-          <!--                                            </BaseButton>-->
-          <!--                                            <button class="mt-3 font-sans text-sm text-primary-500 underline-offset-4 hover:underline">-->
-          <!--                                              Send a friend request-->
-          <!--                                            </button>-->
-          <!--          </div>-->
           <div class="mt-6">
             <div class="mb-3 flex items-center justify-center gap-2 px-4">
               <span class="font-sans text-sm text-muted-400">Members</span>
