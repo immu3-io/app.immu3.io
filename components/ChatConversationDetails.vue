@@ -87,7 +87,7 @@ const canRemoveMember = (member: string) => {
           </div>
         </div>
       </div>
-      <!-- User details -->
+      <!-- Conversation details -->
       <div v-else-if="conversation" class="mt-8">
         <div class="flex items-center justify-center">
           <ConversationAvatar :hash="conversation.hash" size="2xl" />
