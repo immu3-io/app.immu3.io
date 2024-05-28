@@ -13,6 +13,11 @@ export function useMail() {
   const receivedEnvelopes = useState<ReceivedEnvelope[]>('received-envelopes', () => []);
   const selectedEnvelope = useState<ReceivedEnvelope | undefined>('selected-envelope');
   const unwatchOnNew = useState<Function>('unwatch-on-new');
+  const currentPage = useState<bigint>('current-page');
+
+  const PAGE_SIZE = 10n;
+
+  const canLoadMore = computed(() => currentPage.value > 0);
 
   const initializeRemoteStorageProvider = () => {
     return pollinationXClient.value;
@@ -26,7 +31,7 @@ export function useMail() {
     });
   };
 
-  const initializeMailClient = () => {
+  const initializeMailClient = async () => {
     cleanState();
 
     const { walletClient } = useWallet();
@@ -49,40 +54,43 @@ export function useMail() {
       encryptionHandler,
     });
 
-    fetchAll().then(() => {
-      listenForMailEvents();
-    });
+    await fetchTotalPages();
+    await fetchPage();
+    listenForMailEvents();
   };
 
   const cleanState = () => {
     receivedEnvelopes.value = [];
     selectedEnvelope.value = undefined;
+    currentPage.value = 1n;
   };
 
-  const fetchAll = async () => {
+  const fetchTotalPages = async () => {
     if (!address.value) {
+      return;
+    }
+
+    const mailsCount = await mailClient.value.count(address.value);
+    currentPage.value = (mailsCount + PAGE_SIZE - 1n) / PAGE_SIZE;
+  };
+
+  const fetchPage = async () => {
+    if (!address.value || !currentPage.value || isLoading.value) {
       return;
     }
 
     isLoading.value = true;
 
-    const mailsCount = await mailClient.value.count(address.value);
-    const pageSize = 50n;
-    const pageNumber = (mailsCount + pageSize - 1n) / pageSize;
-    const fetchPromises = [];
+    try {
+      const envelopes = await mailClient.value.fetchPaginated(address.value, currentPage.value, PAGE_SIZE);
 
-    for (let currentPage = 1n; currentPage <= pageNumber; currentPage++) {
-      fetchPromises.push(mailClient.value.fetchPaginated(address.value, currentPage, pageSize));
+      receivedEnvelopes.value = [...receivedEnvelopes.value, ...envelopes.reverse()];
+      currentPage.value -= 1n;
+    } catch (e) {
+      toast.error('Failed to fetch mails.');
+    } finally {
+      isLoading.value = false;
     }
-
-    const results = await Promise.allSettled(fetchPromises);
-    const isFulfilled = (
-      result: PromiseSettledResult<ReceivedEnvelope[]>,
-    ): result is PromiseFulfilledResult<ReceivedEnvelope[]> => result.status === 'fulfilled';
-    const envelopes = results.filter(isFulfilled).flatMap((result) => result.value);
-
-    receivedEnvelopes.value = envelopes.reverse();
-    isLoading.value = false;
   };
 
   const listenForNewEnvelopes = () => {
@@ -112,5 +120,7 @@ export function useMail() {
     receivedEnvelopes,
     selectedEnvelope,
     initializeMailClient,
+    fetchPage,
+    canLoadMore: () => canLoadMore.value,
   };
 }

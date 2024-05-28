@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ReceivedEnvelope } from '@4thtech-sdk/types';
+import { vInfiniteScroll } from '@vueuse/components';
 
 const props = defineProps<{
   isLoading: boolean;
@@ -7,7 +8,7 @@ const props = defineProps<{
 }>();
 
 const { isNftIntegrationEnabled, primaryNft } = usePollinationX();
-const { selectedEnvelope } = useMail();
+const { selectedEnvelope, fetchPage, canLoadMore } = useMail();
 
 const isPanelActive = useState<boolean>('is-panel-active', () => false);
 
@@ -39,7 +40,7 @@ const isPollinationXWidgetVisible = computed(() => isNftIntegrationEnabled && !p
       <PollinationxWidget v-if="isPollinationXWidgetVisible" color="none" />
     </div>
     <!-- Show mails if any -->
-    <div v-else-if="receivedEnvelopes.length" class="overflow-y-auto">
+    <div v-else-if="receivedEnvelopes.length" class="h-full">
       <!-- Head (search) -->
       <div class="h-16 w-full px-4 sm:px-8">
         <BaseInput
@@ -52,7 +53,8 @@ const isPollinationXWidgetVisible = computed(() => isNftIntegrationEnabled && !p
       <!-- Mails list -->
       <ul
         v-if="filteredEnvelopes.length"
-        class="nui-slimscroll h-[calc(100%_-_64px)] space-y-2 overflow-y-auto px-4 pb-8 sm:px-8"
+        v-infinite-scroll="[fetchPage, { distance: 10, canLoadMore }]"
+        class="h-[calc(100%_-_64px)] space-y-2 overflow-y-auto px-4 pb-8 sm:px-8"
       >
         <li
           v-for="(envelope, index) in filteredEnvelopes"
