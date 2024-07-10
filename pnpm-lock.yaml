@@ -27,8 +27,8 @@ importers:
         specifier: ^0.0.2
         version: 0.0.2
       '@headlessui/vue':
-        specifier: ^1.7.16
-        version: 1.7.16(vue@3.3.8(typescript@5.2.2))
+        specifier: ^1.7.22
+        version: 1.7.22(vue@3.3.8(typescript@5.2.2))
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.1(rollup@3.29.4)(typescript@5.2.2)(vue@3.3.8(typescript@5.2.2))
@@ -689,8 +689,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  '@headlessui/vue@1.7.16':
-    resolution: {integrity: sha512-nKT+nf/q6x198SsyK54mSszaQl/z+QxtASmgMEJtpxSX2Q0OPJX0upS/9daDyiECpeAsvjkoOrm2O/6PyBQ+Qg==}
+  '@headlessui/vue@1.7.22':
+    resolution: {integrity: sha512-Hoffjoolq1rY+LOfJ+B/OvkhuBXXBFgd8oBlN+l1TApma2dB0En0ucFZrwQtb33SmcCqd32EQd0y07oziXWNYg==}
     engines: {node: '>=10'}
     peerDependencies:
       vue: ^3.2.0
@@ -1238,6 +1238,9 @@ packages:
   '@tanstack/query-sync-storage-persister@4.36.1':
     resolution: {integrity: sha512-yMEt5hWe2+1eclf1agMtXHnPIkxEida0lYWkfdhR8U6KXk/lO4Vca6piJmhKI85t0NHlx3l/z6zX+t/Fn5O9NA==}
 
+  '@tanstack/virtual-core@3.8.2':
+    resolution: {integrity: sha512-ffpN6kTaPGwQPoWMcBAHbdv2ZCpj1SugldoYAcY0C4xH+Pej1KCOEUisNeEgbUnXOp8Y/4q6wGPu2tFHthOIQw==}
+
   '@tanstack/vue-query@4.37.1':
     resolution: {integrity: sha512-QzCQ94g2oZQcEfI4nfqa6Qr3aFXtXiEH17Jho+QFl73c7epqsWNcyP3ovF1fgJz5jEOE5OYtwgkoaRKIRaSigg==}
     peerDependencies:
@@ -1246,6 +1249,11 @@ packages:
     peerDependenciesMeta:
       '@vue/composition-api':
         optional: true
+
+  '@tanstack/vue-virtual@3.8.2':
+    resolution: {integrity: sha512-mVix+nFKajrA+48ky5s7/IYP5/uHHLTz1ZRJfwg2bOLcHUcKyvsLE2UGG4+8hd62ueprWg5MgTudGyR2TYfwpw==}
+    peerDependencies:
+      vue: ^2.7.0 || ^3.0.0
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -6403,8 +6411,9 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
 
-  '@headlessui/vue@1.7.16(vue@3.3.8(typescript@5.2.2))':
+  '@headlessui/vue@1.7.22(vue@3.3.8(typescript@5.2.2))':
     dependencies:
+      '@tanstack/vue-virtual': 3.8.2(vue@3.3.8(typescript@5.2.2))
       vue: 3.3.8(typescript@5.2.2)
 
   '@humanwhocodes/config-array@0.11.13':
@@ -7178,7 +7187,7 @@ snapshots:
   '@shuriken-ui/nuxt@1.8.0(nuxt@3.8.1(@parcel/watcher@2.3.0)(@types/node@20.9.2)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.54.0)(idb-keyval@6.2.1)(optionator@0.9.3)(rollup@3.29.4)(terser@5.24.0)(typescript@5.2.2)(utf-8-validate@5.0.10)(vite@4.5.0(@types/node@20.9.2)(terser@5.24.0)))(postcss@8.4.31)(rollup@3.29.4)(vite@4.5.0(@types/node@20.9.2)(terser@5.24.0))(vue@3.3.8(typescript@5.2.2))(webpack@5.89.0(esbuild@0.19.5))':
     dependencies:
       '@headlessui-float/vue': 0.12.0(vue@3.3.8(typescript@5.2.2))
-      '@headlessui/vue': 1.7.16(vue@3.3.8(typescript@5.2.2))
+      '@headlessui/vue': 1.7.22(vue@3.3.8(typescript@5.2.2))
       '@iconify/vue': 4.1.1(vue@3.3.8(typescript@5.2.2))
       '@nuxtjs/color-mode': 3.3.2(rollup@3.29.4)
       '@nuxtjs/tailwindcss': 6.9.5(rollup@3.29.4)(webpack@5.89.0(esbuild@0.19.5))
@@ -7359,6 +7368,8 @@ snapshots:
     dependencies:
       '@tanstack/query-persist-client-core': 4.36.1
 
+  '@tanstack/virtual-core@3.8.2': {}
+
   '@tanstack/vue-query@4.37.1(vue@3.3.8(typescript@5.2.2))':
     dependencies:
       '@tanstack/match-sorter-utils': 8.8.4
@@ -7366,6 +7377,11 @@ snapshots:
       '@vue/devtools-api': 6.5.1
       vue: 3.3.8(typescript@5.2.2)
       vue-demi: 0.13.11(vue@3.3.8(typescript@5.2.2))
+
+  '@tanstack/vue-virtual@3.8.2(vue@3.3.8(typescript@5.2.2))':
+    dependencies:
+      '@tanstack/virtual-core': 3.8.2
+      vue: 3.3.8(typescript@5.2.2)
 
   '@trysound/sax@0.2.0': {}
 
