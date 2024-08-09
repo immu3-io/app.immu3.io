@@ -67,11 +67,14 @@ export function usePollinationX() {
       signature: signature.value,
     });
 
-    const response = await fetch(`${pollinationXConfig.url}/auth/v2/login?${queryParams.toString()}`, {
-      method: 'GET',
-    });
-
-    return response.json();
+    try {
+      const response = await fetch(`${pollinationXConfig.url}/auth/v2/login?${queryParams.toString()}`, {
+        method: 'GET',
+      });
+      return response.json();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'An unknown error occurred');
+    }
   };
 
   const connectStorageNft = async () => {
