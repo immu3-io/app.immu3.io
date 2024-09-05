@@ -3,6 +3,7 @@ import {
   fantom,
   fantomTestnet,
   immu3Testnet,
+  minato,
   oasisSaphire,
 } from '@4thtech-sdk/ethereum';
 
@@ -18,6 +19,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       immu3Testnet,
       fantom,
       fantomTestnet,
+      minato,
       oasisSaphire,
     ],
     [publicProvider()],
