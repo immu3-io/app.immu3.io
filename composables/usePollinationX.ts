@@ -1,9 +1,10 @@
 import type { Address } from 'viem';
-import { encodeFunctionData, parseEther, toHex } from 'viem';
+import { encodeFunctionData, toHex } from 'viem';
+import { useStorage } from '@vueuse/core';
 import { useToast } from 'vue-toastification';
 import { PollinationX } from '@4thtech-sdk/storage';
 import pollinationXAbi from '~/assets/abi/pollination-x.json';
-import type { GetNft, Nft, NftPackage, PollinationXConfig } from '~/types/pollination-x';
+import type { BandwidthPackage, GetNft, Nft, NftPackage, PollinationXConfig } from '~/types/pollination-x';
 
 export function usePollinationX() {
   const { address } = useAccount();
@@ -13,8 +14,22 @@ export function usePollinationX() {
   const { signMessageAsync } = useSignMessage();
   const toast = useToast();
 
+  const signature = useStorage(`pollination-x-${address.value}`, '');
+
+  enum PollinationXFunction {
+    Mint = 'mint',
+    UpgradeTokenPackage = 'upgradeTokenPackage',
+    BuyMoreBandwidth = 'buyMoreBandwidth',
+  }
+
+  const gasLimits: { [key in PollinationXFunction]: bigint } = {
+    [PollinationXFunction.Mint]: 4_000_000n,
+    [PollinationXFunction.UpgradeTokenPackage]: 1_300_000n,
+    [PollinationXFunction.BuyMoreBandwidth]: 1_000_000n,
+  };
+
   const pollinationXConfig: PollinationXConfig = {
-    url: 'https://6cp0k0.pollinationx.io',
+    url: 'https://u4jc7p.pollinationx.io',
     authMessage:
       'This request will check your PollinationX storage NFT and it will not trigger a blockchain transaction or cost any gas fees.',
   };
@@ -22,12 +37,7 @@ export function usePollinationX() {
   const pollinationXClient = useState<PollinationX | undefined>('pollination-x-client');
   const pxNfts = useState<GetNft | undefined>('px-nfts');
   const primaryNft = useState<Nft | undefined>('primary-nft');
-  const pxNftPackages = useState<NftPackage[]>('nft-packages', () => [
-    { id: 1, size: 5, price: '0.005' },
-    { id: 2, size: 10, price: '0.01' },
-    { id: 3, size: 20, price: '0.02' },
-    { id: 4, size: 100, price: '0.1' },
-  ]);
+  const isLoading = useState('is-loading-pollination-x', () => false);
 
   const isNftIntegrationEnabled = !(runtimeConfig.public.pollinationX.url && runtimeConfig.public.pollinationX.token);
 
@@ -58,24 +68,32 @@ export function usePollinationX() {
       return;
     }
 
-    const signature = await signMessageAsync({ message: pollinationXConfig.authMessage });
+    if (!signature.value) {
+      signature.value = await signMessageAsync({ message: pollinationXConfig.authMessage });
+    }
 
     const queryParams = new URLSearchParams({
       wallet: address.value,
       chain: toHex(chainId.value),
       nonce: pollinationXConfig.authMessage,
-      signature,
+      signature: signature.value,
     });
 
-    const response = await fetch(`${pollinationXConfig.url}/auth/login?${queryParams.toString()}`, {
-      method: 'GET',
-    });
-
-    return response.json();
+    try {
+      const response = await fetch(`${pollinationXConfig.url}/auth/v2/login?${queryParams.toString()}`, {
+        method: 'GET',
+      });
+      return response.json();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'An unknown error occurred');
+    }
   };
 
   const connectStorageNft = async () => {
-    pxNfts.value = await fetchUserNfts().catch((error) => toast.error(error.message));
+    isLoading.value = true;
+    pxNfts.value = await fetchUserNfts()
+      .catch((error) => toast.error(error.message))
+      .finally(() => (isLoading.value = false));
 
     if (pxNfts.value?.error) {
       toast.error(pxNfts.value.error);
@@ -85,14 +103,15 @@ export function usePollinationX() {
   };
 
   const mintNft = async (nftPackage?: NftPackage) => {
+    isLoading.value = true;
     toast.info('Minting in progress');
 
     const isFreeMint = !nftPackage;
     const nftPackageId = isFreeMint ? 0 : nftPackage.id;
-    const nftPackagePrice = isFreeMint ? 0n : parseEther(nftPackage.price);
+    const nftPackagePrice = isFreeMint ? 0n : BigInt(nftPackage.price);
 
     try {
-      const txReceipt = await sendTransaction('mint', [nftPackageId], nftPackagePrice);
+      const txReceipt = await sendTransaction(PollinationXFunction.Mint, [nftPackageId], nftPackagePrice);
 
       if (txReceipt.status === 'success') {
         toast.success('Minted');
@@ -100,17 +119,20 @@ export function usePollinationX() {
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'An unknown error occurred');
+    } finally {
+      isLoading.value = false;
     }
   };
 
   const upgradeNft = async (selectedNftForUpgrade: Nft, nftPackage: NftPackage) => {
+    isLoading.value = true;
     toast.info('Upgrading PX sNFT in progress');
 
     try {
       const txReceipt = await sendTransaction(
-        'upgradeTokenPackage',
+        PollinationXFunction.UpgradeTokenPackage,
         [parseInt(selectedNftForUpgrade.id.tokenId), nftPackage.id],
-        parseEther(nftPackage.price),
+        BigInt(nftPackage.price),
       );
 
       if (txReceipt.status === 'success') {
@@ -119,10 +141,34 @@ export function usePollinationX() {
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'An unknown error occurred');
+    } finally {
+      isLoading.value = false;
     }
   };
 
-  const sendTransaction = async (functionName: string, args: any[], value: bigint = 0n) => {
+  const upgradeBandwidth = async (selectedNftForUpgrade: Nft, pkg: BandwidthPackage) => {
+    isLoading.value = true;
+    toast.info('Upgrading PX bandwidth in progress');
+
+    try {
+      const txReceipt = await sendTransaction(
+        PollinationXFunction.BuyMoreBandwidth,
+        [parseInt(selectedNftForUpgrade.id.tokenId), pkg.id],
+        BigInt(pkg.price),
+      );
+
+      if (txReceipt.status === 'success') {
+        toast.success('Bought more bandwidth');
+        await connectStorageNft();
+      }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'An unknown error occurred');
+    } finally {
+      isLoading.value = false;
+    }
+  };
+
+  const sendTransaction = async (functionName: PollinationXFunction, args: any[], value: bigint = 0n) => {
     const encodedData = encodeFunctionData({
       abi: pollinationXAbi,
       functionName,
@@ -132,22 +178,30 @@ export function usePollinationX() {
     const hash = await walletClient.sendTransaction({
       data: encodedData,
       to: pxNfts.value?.contractAddress as Address,
+      gas: gasLimits[functionName],
       value,
     });
 
     return usePublicClient().value.waitForTransactionReceipt({ hash });
   };
 
+  onMounted(() => {
+    if (signature.value && !pxNfts.value) {
+      connectStorageNft();
+    }
+  });
+
   return {
     pollinationXClient,
     isNftIntegrationEnabled,
     pxNfts,
-    pxNftPackages,
     primaryNft,
+    isLoading,
     connectStorageNft,
     mintNft,
     setPrimaryNft,
     upgradeNft,
+    upgradeBandwidth,
     disconnectPollinationX,
     initializePollinationXClient,
   };
