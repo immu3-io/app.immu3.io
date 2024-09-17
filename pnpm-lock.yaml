@@ -73,11 +73,11 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(esbuild@0.19.5)
       '@fontsource-variable/inter':
-        specifier: ^5.0.19
-        version: 5.0.19
+        specifier: ^5.1.0
+        version: 5.1.0
       '@fontsource-variable/karla':
-        specifier: ^5.0.21
-        version: 5.0.21
+        specifier: ^5.1.0
+        version: 5.1.0
       '@nuxt/image':
         specifier: ^1.0.0
         version: 1.0.0(idb-keyval@6.2.1)(rollup@3.29.4)
@@ -678,11 +678,11 @@ packages:
   '@floating-ui/vue@1.0.2':
     resolution: {integrity: sha512-sImlAl9mAoCKZLNlwWz2P2ZMJIDlOEDXrRD6aD2sIHAka1LPC+nWtB+D3lPe7IE7FGWSbwBPTnlSdlABa3Fr0A==}
 
-  '@fontsource-variable/inter@5.0.19':
-    resolution: {integrity: sha512-V5KPpF5o0sI1uNWAdFArC87NDOb/ZJDPXLomEiKmDCYMlDUCTn2flkuAZkyME2rtGOKO7vzCuDJAND0m/5PhDA==}
+  '@fontsource-variable/inter@5.1.0':
+    resolution: {integrity: sha512-Wj2dUGP0vUpxRGQTXQTCNJO+aLcFcQm+gUPXfj/aS877bQkEPBPv9JvZJpwdm2vzelt8NTZ+ausKlBCJjh2XIg==}
 
-  '@fontsource-variable/karla@5.0.21':
-    resolution: {integrity: sha512-YE1oSLPy+/x/BSmQISA/RE6qx+0zCWTZ3mvEha85K/JBIEkDNgqHfxNk4iGjwzcqzd6qifjFtpr8BO6QvgOGcA==}
+  '@fontsource-variable/karla@5.1.0':
+    resolution: {integrity: sha512-YRmNh8L3wYO+iQhaCjt4aL3RmlGtEcxjGZQs3rAzFodJfDangKZg7jRRc4wWjlc8f9n/JSQdr9+iQ3f91stiTw==}
 
   '@headlessui-float/vue@0.12.0':
     resolution: {integrity: sha512-nn0PzWnn81nqSi4jNOEvuVPMin6jKgGPsy/3ZFJqhRG8pUU96Y2pk+ovkHabyfGuW0HJw1L2igMMlh18DNvmFw==}
@@ -6393,14 +6393,14 @@ snapshots:
   '@floating-ui/vue@1.0.2(vue@3.3.8(typescript@5.2.2))':
     dependencies:
       '@floating-ui/dom': 1.5.3
-      vue-demi: 0.14.7(vue@3.3.8(typescript@5.2.2))
+      vue-demi: 0.14.10(vue@3.3.8(typescript@5.2.2))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
 
-  '@fontsource-variable/inter@5.0.19': {}
+  '@fontsource-variable/inter@5.1.0': {}
 
-  '@fontsource-variable/karla@5.0.21': {}
+  '@fontsource-variable/karla@5.1.0': {}
 
   '@headlessui-float/vue@0.12.0(vue@3.3.8(typescript@5.2.2))':
     dependencies:
@@ -7737,7 +7737,7 @@ snapshots:
       '@types/web-bluetooth': 0.0.20
       '@vueuse/metadata': 10.6.1
       '@vueuse/shared': 10.6.1(vue@3.3.8(typescript@5.2.2))
-      vue-demi: 0.14.7(vue@3.3.8(typescript@5.2.2))
+      vue-demi: 0.14.10(vue@3.3.8(typescript@5.2.2))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
