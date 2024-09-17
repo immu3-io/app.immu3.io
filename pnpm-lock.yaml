@@ -27,8 +27,8 @@ importers:
         specifier: ^0.0.2
         version: 0.0.2
       '@headlessui/vue':
-        specifier: ^1.7.22
-        version: 1.7.22(vue@3.3.8(typescript@5.2.2))
+        specifier: ^1.7.23
+        version: 1.7.23(vue@3.3.8(typescript@5.2.2))
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.1(rollup@3.29.4)(typescript@5.2.2)(vue@3.3.8(typescript@5.2.2))
@@ -689,8 +689,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  '@headlessui/vue@1.7.22':
-    resolution: {integrity: sha512-Hoffjoolq1rY+LOfJ+B/OvkhuBXXBFgd8oBlN+l1TApma2dB0En0ucFZrwQtb33SmcCqd32EQd0y07oziXWNYg==}
+  '@headlessui/vue@1.7.23':
+    resolution: {integrity: sha512-JzdCNqurrtuu0YW6QaDtR2PIYCKPUWq28csDyMvN4zmGccmE7lz40Is6hc3LA4HFeCI7sekZ/PQMTNmn9I/4Wg==}
     engines: {node: '>=10'}
     peerDependencies:
       vue: ^3.2.0
@@ -6411,7 +6411,7 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
 
-  '@headlessui/vue@1.7.22(vue@3.3.8(typescript@5.2.2))':
+  '@headlessui/vue@1.7.23(vue@3.3.8(typescript@5.2.2))':
     dependencies:
       '@tanstack/vue-virtual': 3.8.2(vue@3.3.8(typescript@5.2.2))
       vue: 3.3.8(typescript@5.2.2)
@@ -7187,7 +7187,7 @@ snapshots:
   '@shuriken-ui/nuxt@1.8.0(nuxt@3.8.1(@parcel/watcher@2.3.0)(@types/node@20.9.2)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.54.0)(idb-keyval@6.2.1)(optionator@0.9.3)(rollup@3.29.4)(terser@5.24.0)(typescript@5.2.2)(utf-8-validate@5.0.10)(vite@4.5.0(@types/node@20.9.2)(terser@5.24.0)))(postcss@8.4.31)(rollup@3.29.4)(vite@4.5.0(@types/node@20.9.2)(terser@5.24.0))(vue@3.3.8(typescript@5.2.2))(webpack@5.89.0(esbuild@0.19.5))':
     dependencies:
       '@headlessui-float/vue': 0.12.0(vue@3.3.8(typescript@5.2.2))
-      '@headlessui/vue': 1.7.22(vue@3.3.8(typescript@5.2.2))
+      '@headlessui/vue': 1.7.23(vue@3.3.8(typescript@5.2.2))
       '@iconify/vue': 4.1.1(vue@3.3.8(typescript@5.2.2))
       '@nuxtjs/color-mode': 3.3.2(rollup@3.29.4)
       '@nuxtjs/tailwindcss': 6.9.5(rollup@3.29.4)(webpack@5.89.0(esbuild@0.19.5))

@@ -38,7 +38,7 @@
     "@4thtech-sdk/storage": "^0.3.5",
     "@4thtech-sdk/types": "^0.3.6",
     "@4thtech-sdk/utils": "^0.0.2",
-    "@headlessui/vue": "^1.7.22",
+    "@headlessui/vue": "^1.7.23",
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/zod": "^4.11.8",
     "@vueuse/components": "^10.10.0",
