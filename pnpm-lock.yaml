@@ -33,8 +33,8 @@ importers:
         specifier: ^0.5.1
         version: 0.5.1(rollup@3.29.4)(typescript@5.2.2)(vue@3.3.8(typescript@5.2.2))
       '@vee-validate/zod':
-        specifier: ^4.11.8
-        version: 4.11.8(vue@3.3.8(typescript@5.2.2))
+        specifier: ^4.13.2
+        version: 4.13.2(vue@3.3.8(typescript@5.2.2))
       '@vueuse/components':
         specifier: ^11.1.0
         version: 11.1.0(vue@3.3.8(typescript@5.2.2))
@@ -1411,8 +1411,8 @@ packages:
   '@use-wagmi/nuxt@1.1.8':
     resolution: {integrity: sha512-V6MG6icKIwNfFCTS51Z8iXwSUFYJE57a5XiDo98OTtbBNje+6KcxezFGCo5CU4JF11VLDtpmMLEq55pfJX+0zw==}
 
-  '@vee-validate/zod@4.11.8':
-    resolution: {integrity: sha512-qAyqDEigklMf669ZqIw9t95g0Ipzu9rMYUqcZpANlCvyaIAeBlJGcsv+2CewlqgwuC6BL9EAURLJ8Ux5WlBgXg==}
+  '@vee-validate/zod@4.13.2':
+    resolution: {integrity: sha512-y1aqelutD6btX2ayZk3w8udClAykptphlGLwu0vlCqY2r9mrJqMn1EKqtcwXAvEom+ceTcHJOwGr2FUA7i+ZEg==}
 
   '@vercel/nft@0.24.3':
     resolution: {integrity: sha512-IyBdIxmFAeGZnEfMgt4QrGK7XX4lWazlQj34HEi9dw04/WeDBJ7r1yaOIO5tTf9pbfvwUFodj9b0H+NDGGoOMg==}
@@ -1467,6 +1467,9 @@ packages:
 
   '@vue/devtools-api@6.5.1':
     resolution: {integrity: sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==}
+
+  '@vue/devtools-api@6.6.4':
+    resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
 
   '@vue/reactivity-transform@3.3.8':
     resolution: {integrity: sha512-49CvBzmZNtcHua0XJ7GdGifM8GOXoUMOX4dD40Y5DxI3R8OUhMlvf2nvgUAcPxaXiV5MQQ1Nwy09ADpnLQUqRw==}
@@ -5309,6 +5312,10 @@ packages:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
 
+  type-fest@4.26.1:
+    resolution: {integrity: sha512-yOGpmOAL7CkKe/91I5O3gPICmJNLJ1G4zFYVAsRHg7M64biSnPtRj0WNQt++bRkjYOqjWXrhnUw1utzmVErAdg==}
+    engines: {node: '>=16'}
+
   type-fest@4.7.1:
     resolution: {integrity: sha512-iWr8RUmzAJRfhZugX9O7nZE6pCxDU8CZ3QxsLuTnGcBLJpCaP2ll3s4eMTBoFnU/CeXY/5rfQSuAEsTGJO4y8A==}
     engines: {node: '>=16'}
@@ -5521,6 +5528,11 @@ packages:
     resolution: {integrity: sha512-ZuVpw0axWYBM3aVTD/bm94hcWHumqeUgNjptOqfBT0gyqyHaGYCrm0tSD/0bygEbWUDwEPJOQaEKaUGM82j8TQ==}
     peerDependencies:
       vue: ^3.3.4
+
+  vee-validate@4.13.2:
+    resolution: {integrity: sha512-HlpR/6MJ92TW9f135umMZKUqdd/tFQTxLNSf2ImbU4Y/MlLVAUpF1l64VdjTOhbClAqPjCb5p/SqHDxLpUHXrw==}
+    peerDependencies:
+      vue: ^3.4.26
 
   viem@1.21.4:
     resolution: {integrity: sha512-BNVYdSaUjeS2zKQgPs+49e5JKocfo60Ib2yiXOWBT6LuVxY1I/6fFX3waEtpXvL1Xn4qu+BVitVtMh9lyThyhQ==}
@@ -7574,10 +7586,10 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vee-validate/zod@4.11.8(vue@3.3.8(typescript@5.2.2))':
+  '@vee-validate/zod@4.13.2(vue@3.3.8(typescript@5.2.2))':
     dependencies:
-      type-fest: 4.7.1
-      vee-validate: 4.11.8(vue@3.3.8(typescript@5.2.2))
+      type-fest: 4.26.1
+      vee-validate: 4.13.2(vue@3.3.8(typescript@5.2.2))
       zod: 3.22.4
     transitivePeerDependencies:
       - vue
@@ -7681,6 +7693,8 @@ snapshots:
       '@vue/shared': 3.3.8
 
   '@vue/devtools-api@6.5.1': {}
+
+  '@vue/devtools-api@6.6.4': {}
 
   '@vue/reactivity-transform@3.3.8':
     dependencies:
@@ -12400,6 +12414,8 @@ snapshots:
 
   type-fest@3.13.1: {}
 
+  type-fest@4.26.1: {}
+
   type-fest@4.7.1: {}
 
   type-is@1.6.18:
@@ -12670,6 +12686,12 @@ snapshots:
     dependencies:
       '@vue/devtools-api': 6.5.1
       type-fest: 4.7.1
+      vue: 3.3.8(typescript@5.2.2)
+
+  vee-validate@4.13.2(vue@3.3.8(typescript@5.2.2)):
+    dependencies:
+      '@vue/devtools-api': 6.6.4
+      type-fest: 4.26.1
       vue: 3.3.8(typescript@5.2.2)
 
   viem@1.21.4(bufferutil@4.0.8)(typescript@5.2.2)(utf-8-validate@5.0.10)(zod@3.22.4):

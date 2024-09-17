@@ -40,7 +40,7 @@
     "@4thtech-sdk/utils": "^0.0.2",
     "@headlessui/vue": "^1.7.23",
     "@pinia/nuxt": "^0.5.1",
-    "@vee-validate/zod": "^4.11.8",
+    "@vee-validate/zod": "^4.13.2",
     "@vueuse/components": "^11.1.0",
     "@vueuse/core": "^11.1.0",
     "file-saver": "^2.0.5",
