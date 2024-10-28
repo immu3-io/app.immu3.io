@@ -2,9 +2,11 @@ import { UseWagmiPlugin, configureChains, createConfig } from 'use-wagmi';
 import {
   fantom,
   fantomTestnet,
+  gnosisChiado,
   immu3Testnet,
   minato,
   oasisSaphire,
+  polygonAmoy,
 } from '@4thtech-sdk/ethereum';
 
 import { CoinbaseWalletConnector } from 'use-wagmi/connectors/coinbaseWallet';
@@ -21,6 +23,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       fantomTestnet,
       minato,
       oasisSaphire,
+      polygonAmoy,
+      gnosisChiado,
     ],
     [publicProvider()],
   );
