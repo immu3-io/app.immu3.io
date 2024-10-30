@@ -8,9 +8,9 @@ export default defineAppConfig({
     },
   },
   links: {
-    privacyPolicy: 'https://github.com/immu3-io/static-assets/raw/main/pdf/2023-02-20_CR_Systems_Privacy_Policy.pdf',
+    privacyPolicy: 'https://github.com/immu3-io/static-assets/raw/main/pdf/CR_Systems_Privacy_Policy.pdf',
     termsOfUse:
-      'https://github.com/immu3-io/static-assets/raw/main/pdf/2023-03-13_CR_Systems_dMail_dChat_w3xshare_Software_Terms.pdf',
+      'https://github.com/immu3-io/static-assets/raw/main/pdf/CR_Systems_BlockCommunicator_Software_Terms.pdf',
   },
   layout: {
     collapse: {
