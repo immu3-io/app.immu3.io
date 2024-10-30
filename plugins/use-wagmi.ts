@@ -1,5 +1,6 @@
 import { UseWagmiPlugin, configureChains, createConfig } from 'use-wagmi';
 import {
+  gnosisChiado,
   minato,
 } from '@4thtech-sdk/ethereum';
 
@@ -13,6 +14,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const { chains, publicClient, webSocketPublicClient } = configureChains(
     [
       minato,
+      gnosisChiado,
     ],
     [publicProvider()],
   );
