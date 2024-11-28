@@ -2,6 +2,7 @@ import { UseWagmiPlugin, configureChains, createConfig } from 'use-wagmi';
 import {
   gnosisChiado,
   minato,
+  citrea,
 } from '@4thtech-sdk/ethereum';
 
 import { CoinbaseWalletConnector } from 'use-wagmi/connectors/coinbaseWallet';
@@ -15,6 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     [
       minato,
       gnosisChiado,
+      citrea,
     ],
     [publicProvider()],
   );
