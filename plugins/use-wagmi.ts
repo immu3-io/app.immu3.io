@@ -8,6 +8,7 @@ import {
   oasisSaphire,
   polygonAmoy,
   sonicTestnet,
+  citrea,
 } from '@4thtech-sdk/ethereum';
 
 import { CoinbaseWalletConnector } from 'use-wagmi/connectors/coinbaseWallet';
@@ -27,6 +28,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       polygonAmoy,
       gnosisChiado,
       sonicTestnet,
+      citrea,
     ],
     [publicProvider()],
   );
